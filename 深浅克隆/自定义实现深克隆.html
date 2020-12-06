@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深克隆</title>
+</head>
+<body>
+  <script>
+
+    // 深克隆(深拷贝)
+    function deepClone(obj) {
+      // 当obj是基本类型和Date,RegExp的处理
+      if (obj === null) return null
+      if (typeof obj !== "object") return obj
+      if (obj instanceof RegExp) {
+        return new RegExp(obj)
+      }
+      if (obj instanceof Date) {
+         return new Date(obj)
+      }
+
+      // 当obj是除了Date和RegExp的的处理
+      let newObj = new obj.constructor
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          newObj[key] = deepClone(obj[key])
+        }
+      }
+      return newObj
+    }
+
+    // 测试
+    let obj1 = {
+      name: "apple",
+      age: 30,
+      other: {
+        id: 100
+      },
+      reg: /\^d+$/,
+      time: new Date()
+    }
+
+    let obj2 = deepClone(obj1)
+
+  </script>
+</body>
+</html>
