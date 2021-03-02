@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="./index.js"></script>
+<script>
+	// 测试
+	function add(a, b) {
+		console.log(this)
+		return a + b + this.c
+	}
+
+	let obj = {
+		c: 521
+	}
+
+	window.c = 1314
+	console.log(Apply(add, obj, [10, 20]))
+	console.log(Apply(add, null, [30, 40]))
+  console.log(obj)
+</script>
+</body>
+</html>
