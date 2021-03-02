@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="./index.js"></script>
+<script>
+	// 测试
+	function add(a, b) {
+		console.log(this)
+		return a + b + this.c
+	}
+
+	let obj = {
+		c: 521
+	}
+	window.c = 1314
+
+  let f1 = Bind(add, obj, 10, 20)
+  console.log(f1())
+  let f2 = Bind(add, obj)
+  console.log(f2(30, 40))
+	let f3 = Bind(add, obj, 10, 20)
+	console.log(f3(30, 40))
+</script>
+</body>
+</html>
