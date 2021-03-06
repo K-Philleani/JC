@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="text">
+<script src="./debounce.js"></script>
+<script>
+  let input = window.document.querySelector('input')
+  input.onkeydown = debounce(function(e) {
+  	console.log(e.keyCode)
+  },1000)
+</script>
+</body>
+</html>
