@@ -2,9 +2,12 @@ import def from './util.js'
 import defineReactive from './defineReactive.js'
 import { arrayMethods } from './array.js'
 import observe from "./observe.js";
+import Dep from './Dep.js'
 
 class Observer {
 	constructor(value) {
+		// 每一个Observer的实例都有一个Dep
+		this.dep = new Dep()
 		// 给实例(this，一定要注意，构造器中的this不是表示类本身，而是表示实例)添加了__ob__属性，值是这次的实例
 		def(value, '__ob__', this, false)
 		console.log("Observer构造器", value, value.__ob__)

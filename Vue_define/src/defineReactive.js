@@ -1,7 +1,8 @@
 import observe from './observe.js'
-
+import Dep from './Dep.js'
 
 function defineReactive(data, key, val) {
+	const dep = new Dep()
 	if (arguments.length == 2) {
 		val = data[key]
 	}
@@ -12,6 +13,12 @@ function defineReactive(data, key, val) {
 		configurable: true,
 		get() {
 			console.log("触发getter", key, val);
+			if (Dep.target) {
+				dep.addDepend()
+				if (childOb) {
+					childOb.dep.addDepend()
+				}
+			}
 			return val
 		},
 		set(newVal) {
@@ -20,6 +27,8 @@ function defineReactive(data, key, val) {
 			val = newVal
 			// 当设置了新的值，这个新的值也要被observe
 			childOb = observe(newVal)
+			// 发布订阅模式
+			dep.notify()
 		}
 	})
 }
