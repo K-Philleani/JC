@@ -3,7 +3,7 @@ function UrlSearchParams(url) {
 		let urlSearch = url.split('?')[1]
 		let tmpObj = {}
 		let strs = urlSearch.split('&');
-		for (let i =0; i < strs.length; i++) {
+		for (let i = 0; i < strs.length; i++) {
 			tmpObj[strs[i].split('=')[0]] = strs[i].split('=')[1]
 		}
 		return tmpObj
