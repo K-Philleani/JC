@@ -13,3 +13,8 @@ function pull(arr, ...args) {
 	}
 	return result
 }
+
+
+function pullAll(arr, valuesArr) {
+	return pull(arr, ...valuesArr)
+}
